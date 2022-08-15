@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppgave 4 - Student 1</title>
+</head>
+<body>
+    <pre>This is a game of memory!
+        Press GO! when you are ready, remember the number and dial it in.
+    </pre>
+    <input id="aButton" type="button" value="GO!">
+    <input id="aButton2" type="button" value="Again"><br>
+    
+    <div id="random-output"></div><br>
+    
+    <input id="your-answer" type="text" placeholder="Ditt svar...">
+    <input id="submit-answer" type="button" value="Final answer...?">
+    <div id="score-tab"></div><br>
+    <div id="judgement"></div>
+    
+
+    <script>
+        var randomOutput = document.getElementById("random-output");
+        var yourAnswer = document.getElementById("your-answer");
+        var aBtn = document.getElementById("aButton");
+        var aBtn2 = document.getElementById("aButton2");
+        var judge = document.getElementById("judgement");
+        var submit = document.getElementById("submit-answer");
+        var scoreTab = document.getElementById("score-tab");
+        
+        var score = 0;
+        var randomNumber;
+        
+
+
+        function generateRandomNumber(){
+            randomNumber = Math.floor(Math.random() * 999999999 );
+            randomOutput.innerHTML = randomNumber;          
+            return randomNumber;
+        }
+
+        function numberDisappear(){
+            randomOutput.style.transitionDelay = "2s";
+            randomOutput.style.background = "black";
+        }
+
+        function retry(){
+            randomOutput.style.transitionDelay = "0s"
+            randomOutput.style.background ="white";
+            randomOutput.innerHTML = "";
+
+        }
+    
+        function initiate(){
+            generateRandomNumber();            
+            numberDisappear();
+        }
+
+        function rightWrong(){
+            if(parseInt(yourAnswer.value) === randomNumber){
+                judge.innerHTML += `<h1>${"Nice! Memory served you well!"}</h1>`;
+                score += 1;                
+                return score;
+            }else{
+                judge.innerHTML += `<h1>${"Too bad! :( "}</h1>`;
+                score -= 1;                
+                return score;
+            }
+
+        }
+
+        function printScore(){
+            scoreTab.innerHTML = `"Your score so far: ${score} point!"`;            
+        }
+        
+        function confirmation(){
+            rightWrong();
+            printScore();
+            yourAnswer.value = "";
+        }
+
+        
+        aBtn.onclick = initiate;
+        aBtn2.onclick = retry;
+        submit.onclick = confirmation;
+        
+
+
+    </script>
+
+</body>
+</html>

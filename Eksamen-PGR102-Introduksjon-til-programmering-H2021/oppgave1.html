@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppgave 1</title>
+    <link rel="stylesheet" type="text/css" href="css/oppgave1.css">
+</head>
+<body>
+
+    <!-- Det er lov å endre/legge til HTML -->
+
+    <h1>Modern Art Maker</h1>
+
+    <label>Bredde</label>    
+    <input id="width-txt" type="text">
+
+    <label>Høyde</label>
+    <input id="height-txt" type="text">
+
+    <hr>
+
+    <label>Farge</label>
+    <input id="background-color-txt" type="text">
+
+    <hr>
+
+    <label>Posisjon fra venstre (left)</label>
+    <input id="left-txt" type="text">
+
+    <label>Posisjon fra toppen (top)</label>
+    <input id="top-txt" type="text">
+
+    <hr>
+
+    <input id="add-box-btn" type="button" value="Legg til">
+    <input id="testBtn" type="button" value="TEST">
+    <!--Knapp for å starte på nytt-->
+    <input id="restart" type="button" value="Start på nytt">
+
+    <p id="status-p">Antall bokser lagt til: 3</p>
+
+    <div id="output-div"></div>
+
+    <script>
+        //Henter ut variablene
+        var widthTxt = document.getElementById("width-txt");
+        var heightTxt = document.getElementById("height-txt");
+        var backgroundColorTxt = document.getElementById("background-color-txt");
+        var topTxt = document.getElementById("top-txt");
+        var leftTxt = document.getElementById("left-txt");
+        var addBoxBtn = document.getElementById("add-box-btn");
+        var statusP = document.getElementById("status-p");
+        var outputDiv = document.getElementById("output-div");
+        var testBtn = document.getElementById("testBtn");
+        var restartBtn = document.getElementById("restart");
+
+        function style(w, h, c, t, l){
+        outputDiv.style.width = w;
+        outputDiv.style.height = h;
+        outputDiv.style.background = c;
+        outputDiv.style.top = t;
+        outputDiv.style.left = l;
+        }
+
+        function generate(){
+            style(`${widthTxt.value}px`, 
+            `${heightTxt.value}px`, 
+            `${backgroundColorTxt.value}`), 
+            `${topTxt.value}px`, 
+            `${leftTxt.value}px`;
+
+            console.log(style);
+        
+        }
+        
+        addBoxBtn.onclick = generate;
+
+        function restart(){  
+            if(confirm("Er du sikker?"))
+            {                     
+                location.reload();         
+            }
+        }
+        
+        restartBtn.onclick = restart; 
+
+        //Visste ikke hvordan jeg skulle lage flere bokser.
+
+
+        
+        
+
+      
+    
+
+
+    </script>
+    
+    </body>
+</html>

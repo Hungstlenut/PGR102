@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppgave 2 - Dragracing</title>
+    <link rel="stylesheet" href="css/oppgave2.css">
+</head>
+<body>
+
+    <h1>Dragracing</h1>
+
+    <div id="road-div"></div>
+    
+    <img id="blue-car" src="images/blue-car.png">
+    <img id="green-car" src="images/green-car.png">
+    <img id="red-car" src="images/red-car.png">
+
+    <div id="finish-line"></div>
+
+    <div id="output-div"></div>
+
+    <input id="start-button" type="button" value="Start">
+
+    <script>
+        var blueCar = document.getElementById("blue-car");
+        var greenCar = document.getElementById("green-car");
+        var redCar = document.getElementById("red-car");
+        var finishLine = document.getElementById("finish-line");
+        var outputDiv = document.getElementById("output-div");
+        var startBtn = document.getElementById("start-button");
+        var blue = 0;
+        var green = 0;
+        var red = 0;
+        let interID;
+        
+        function bringForthStartBtn(){
+            startBtn.style.position = "relative";
+            startBtn.style.zIndex = "1";
+            startBtn.style.backgroundColor = "magenta";
+        }
+
+        function blueSpeed(){            
+            blue += Math.floor(Math.random()*200)
+            return blue;           
+            }
+        
+        function greenSpeed(){
+            green += Math.floor(Math.random()*200)
+            return green;
+        }
+
+        function redSpeed(){
+            red += Math.floor(Math.random()*201)
+            return red;
+        }
+
+        function winningCondition(){
+            if(blue >= 700){
+                clearInterval(interID);
+                    outputDiv.innerHTML = `<p>Blue car won!!</p>`;
+            }if(green >= 700){
+                clearInterval(interID);
+                    outputDiv.innerHTML = `<p>Green car won!!</p>`;
+            }if(red >= 700){
+                clearInterval(interID);
+                    outputDiv.innerHTML = `<p>Red car won!!</p>`;
+            }
+            
+        }
+      
+        startBtn.addEventListener("click", function (){
+            interID = setInterval(function start(){
+                        winningCondition();
+                        blueSpeed();
+                        greenSpeed();
+                        redSpeed();                        
+                            blueCar.style.left = `${blue}px`;
+                            greenCar.style.left = `${green}px`;
+                            redCar.style.left = `${red}px`;
+
+        }, 2000)
+        }
+        )
+
+      
+
+        console.log(blue);
+
+        bringForthStartBtn();
+        //startBtn.onclick = start;
+        
+       
+
+    </script>
+
+</body>
+</html>

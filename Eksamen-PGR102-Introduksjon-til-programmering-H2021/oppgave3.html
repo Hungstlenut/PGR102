@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppgave 3 - Middelalderbygninger</title>
+</head>
+<body>
+
+    <!-- Det er lov å endre/legge til HTML -->
+
+    <h1>Middelalderbygninger</h1>
+    <p>Lyst til å bo i en middelalderbygning? Vi har de beste middelalderbygningene! :)</p>
+
+    <input id="show-all-btn" type="button" value="Vis alle">
+
+    <hr>
+
+    <label>Minimum pris</label>
+    <input id="minimum" type="text">
+    <label>Maksimum pris</label>
+    <input id="maximum" type="text">
+    <input id="aButton" type="button" value="Vis etter pris">
+
+    <hr>
+
+    <!-- Hint: Å hente value fra valgt <option> fungerer på samme måte som å hente value fra en tekstboks -->
+    <select id="category-select"><!-- Du endrer på options for å tilpasse til din løsning -->
+        <option>--Velg kategori--</option>
+        <option value="noble">Adelig</option>
+        <option value="common">Folkebygg</option>
+        
+    </select>
+    <input id="aButton2" type="button" value="Vis etter kategori">
+
+    <hr>
+
+    <div id="output-div">
+
+    </div>
+
+    <script>
+        var showAllBtn = document.getElementById("show-all-btn");
+        var outputDiv = document.getElementById("output-div");
+        var minim = document.getElementById("minimum");
+        var maxim = document.getElementById("maximum");
+        var btn = document.getElementById("aButton");
+        var catSelect = document.getElementById("category-select");
+        var btn2 = document.getElementById("aButton2");
+         
+
+        var constructionArray = [
+            {"name": "Castle", "category": "noble", "price": 1300, "image": "images/building-5.png" },
+            {"name": "Tower", "category": "noble", "price": 1500, "image": "images/building-6.png"},
+            {"name": "Hotel", "category": "noble", "price": 1200, "image": "images/building-4.png"},
+            {"name": "Big house", "category": "common", "price": 300, "image": "images/building-3.png"},
+            {"name": "Medium house", "category": "common", "price": 200, "image": "images/building-2.png"},
+            {"name": "Small house", "category": "common", "price": 100, "image": "images/building-1.png"}
+        ];
+
+        function showAllBuildings(){
+            for(var i = 0; i < constructionArray.length; i++){
+                outputDiv.innerHTML += `<article>
+                                            <h1>Name: ${constructionArray[i].name}</h1>
+                                            <img src=${constructionArray[i].image}>
+                                            <p>${constructionArray[i].price} gold</p>
+                                        </article>`                                        
+            }
+        }
+
+        
+        showAllBtn.onclick = showAllBuildings;
+        
+
+        function getPriceRange(){
+            var askingPrice = (parseInt(maxim.value) - parseInt(minim.value));
+            
+            for(var i = 0; i = constructionArray.length; i++){
+                if(constructionArray[i].price === askingPrice){
+                    outputDiv.innerHTML += `<article>
+                                                <h1>Name: ${constructionArray[i].name}</h1>
+                                                <img src=${constructionArray[i].image}>
+                                                <h2>Category: ${constructionArray[i].price}</h2>                                                                                       
+                                            </article>`
+                }
+            }
+        }
+        
+        btn.onclick = getPriceRange; //...funker ikke, er jeg inne på noe?
+
+        function showBuildingsByCat(){
+            var category = catSelect.value;
+
+            for(var i = 0; i < constructionArray.length; i++){
+                if(constructionArray[i].category === category){
+                    outputDiv.innerHTML += `<article>
+                                                <h1>Name: ${constructionArray[i].name}</h1>
+                                                <img src=${constructionArray[i].image}>
+                                                <h2>Category: ${constructionArray[i].category}</h2>                                                                                       
+                                            </article>`  
+                }                 
+            }            
+        }
+
+        btn2.onclick = showBuildingsByCat;
+
+       
+
+    </script>
+
+</body>
+</html>
